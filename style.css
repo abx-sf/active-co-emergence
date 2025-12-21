@@ -53,3 +53,13 @@ p {
   margin-top: 3rem;
   font-style: italic;
 }
+.signature {
+  margin-top: 3rem;
+  font-style: italic;
+}
+
+.contact-note {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
