@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+main {
+  max-width: 640px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-top: 3rem;
+}
+
+p {
+  margin: 1.2rem 0;
+  line-height: 1.6;
+}
+
+.signature {
+  margin-top: 3rem;
+  font-style: italic;
+}
+
+.contact-note {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
