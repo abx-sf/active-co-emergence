@@ -1,24 +1,32 @@
+/* =========================
+   Active Co-Emergence
+   SpaceForm Editorial Style
+   ========================= */
+
 body {
-  font-family: Georgia, serif;
+  font-family: Garamond, "Times New Roman", serif;
   max-width: 720px;
-  margin: 80px auto;
-  padding: 0 20px;
-  line-height: 1.65;
+  margin: 90px auto;
+  padding: 0 22px;
+  line-height: 1.72;
   color: #111;
-  background: #fff;
+  background: #ffffff;
 }
+
+/* Header */
 
 header {
   margin-bottom: 4rem;
 }
 
 h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.3rem;
+  font-weight: normal;
+  margin-bottom: 0.35rem;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: normal;
   margin-top: 0;
 }
@@ -28,35 +36,65 @@ h2 {
   color: #555;
 }
 
+/* Section titles */
+
 h3 {
   margin-top: 4rem;
   font-size: 1.5rem;
+  font-weight: normal;
 }
 
 h4 {
   margin-top: 2rem;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: normal;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
+/* Text */
+
 p {
-  margin: 1.2rem 0;
+  margin: 1.25rem 0;
+  text-align: justify;
 }
+
+/* Aphoristic fragments */
 
 .aphorism {
   margin: 2.5rem 0;
   font-style: italic;
 }
+
+/* Signature */
+
 .signature {
   margin-top: 3rem;
   font-style: italic;
 }
 
+/* Contact */
+
 .contact-note {
-  margin-top: 1.5rem;
+  margin-top: 1.6rem;
   font-size: 0.9rem;
   opacity: 0.75;
 }
 
+.contact-note a {
+  display: block;
+  margin-top: 0.6rem;
+}
+
+/* Links */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+  transition: border-color 0.25s ease;
+}
+
+a:hover {
+  border-color: #000;
+}
