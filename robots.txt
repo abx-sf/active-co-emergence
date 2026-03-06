@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abx-sf.github.io/active-co-emergence/sitemap.xml
