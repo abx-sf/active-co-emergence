@@ -33,7 +33,8 @@ h2 {
 
 .subtitle {
   font-style: italic;
-  color: #555;
+  color: #666;
+  font-size: 0.95rem;
 }
 
 /* Section titles */
