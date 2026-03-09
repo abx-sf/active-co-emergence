@@ -34,6 +34,10 @@ h2 {
   margin-bottom: 18px;
 }
 
+p {
+  margin-bottom: 1.4rem;
+}
+
 .subtitle {
   font-style: italic;
   color: #666;
