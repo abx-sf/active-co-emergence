@@ -6,16 +6,19 @@
 body {
   font-family: "Libre Baskerville", Baskerville, "Times New Roman", serif;
   font-size: 1.22rem;
+  line-height: 1.8;
   max-width: 720px;
   margin: 90px auto;
   padding: 0 22px;
-  line-height: 1.75;
-  color: #111;
-  background: #ffffff;
+  color: #222;
   background: #fdfdfc;
   text-rendering: optimizeLegibility;
+  font-kerning: normal;
 }
 
+p {
+  margin-bottom: 1.5rem;
+}
 /* Header */
 
 header {
