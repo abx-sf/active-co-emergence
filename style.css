@@ -134,13 +134,14 @@ a:hover {
 }
 
 .spaceform {
-font-style: italic;
-margin-top: 30px;
-margin-bottom: 5px;
+  font-style: italic;
+  font-size: 0.85em;
+  margin-top: 24px;
+  margin-bottom: 6px;
 }
 
 .subtitle {
-font-size: 0.9em;
-letter-spacing: 0.04em;
-margin-top: 0;
+  font-size: 0.95em;
+  letter-spacing: 0.04em;
+  margin-top: 0;
 }
