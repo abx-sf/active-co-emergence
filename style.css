@@ -1,147 +1,502 @@
 /* =========================
    Active Co-Emergence
    SpaceForm Editorial Style
-   ========================= */
+   ========================= 
+
+*/
 
 body {
-  font-family: "Libre Baskerville", Baskerville, "Times New Roman", serif;
-  font-size: 1.22rem;
-  line-height: 1.8;
-  max-width: 720px;
-  margin: 90px auto;
-  padding: 0 22px;
-  color: #222;
-  background: #fdfdfc;
-  text-rendering: optimizeLegibility;
-  font-kerning: normal;
+  
+font-family: "Libre Baskerville", Baskerville, "Times New Roman", serif;
+  
+max-width: 700px;
+  
+margin: 90px auto;
+  
+padding: 0 22px;
+  line-height: 1.72;
+  
+color: #111;
+  
+background: #ffffff;
+
 }
 
-p {
-  margin-bottom: 1.5rem;
+ 
+
+html {
+scroll-behavior: smooth;
+
 }
-/* Header */
+
+/* Header */ 
+*/
 
 header {
-  margin-bottom: 4rem;
+  
+margin-bottom: 5rem;
+
 }
+
+.research-space {
+  
+font-size: 0.85rem;
+  color: #666;
+  
+letter-spacing: 0.03em;
+  
+margin-bottom: 1.6rem;
+
+}
+
+
 
 h1 {
-  font-size: 1.35rem;
-  font-weight: normal;
-  margin-top: 0;
+
+font-family: "Libre Baskerville", Baskerville, "Times New Roman", serif;  
+font-size: 1.42rem;
+  
+
+margin-top: 0;
+
+margin-bottom: 0.32rem;
+letter-spacing: 0.0355em;
+font-variant: small-caps;
 }
+
+
 
 h2 {
-  font-size: 2.3rem;
-  font-weight: normal;
-  margin-top: 10px;
-  margin-bottom: 18px;
+
+font-family: "Libre Baskerville", Baskerville, "Times New Roman", serif;  
+font-size: 2.35rem;
+  
+font-weight: normal;
+  
+margin-bottom: 0.45rem;
+
+line-height: 1.15;
+  
+letter-spacing: 0.02em;
 }
 
-p {
-  margin-bottom: 1.4rem;
-}
+
 
 .subtitle {
-  font-style: italic;
-  color: #666;
-  font-size: 0.95rem;
+  
+font-style: italic;
+  
+color: #666;
+  
+font-size: 0.85rem;
+
+margin-top:0.1rem;
+opacity:0.7;
 }
+
+.subtitle a::after{
+
+content:" ↓";
+
+font-size:0.8em;
+
+opacity:0.8;
+
+}
+
+.lead-word {
+  
+letter-spacing: 0.05em;
+
+}
+
+.tagline {
+
+ font-family: "Libre Baskerville", Baskerville, "Times New Roman", serif;  
+font-size: 1.05rem;
+
+font-style: normal;  
+
+margin-top: 0.7rem;
+
+line-height: 1.45;
+opacity:0.85;
+
+letter-spacing: 0.003em;
+}
+
+.spaceform {
+  
+font-size: 0.78rem;
+  
+color: #666;
+  
+letter-spacing: 0.06em;
+margin-bottom: 1.8rem;
+}
+
+
+.concept {
+  
+letter-spacing: 0.035em;
+
+}
+
+.activation-context {
+  
+margin-top: 1.4rem;
+  
+margin-bottom: 2.5rem;
+
+}
+
+section {
+  
+margin-top: 3rem;
+
+}
+
 
 /* Section titles */
 
+
 h3 {
-  margin-top: 4rem;
-  font-size: 1.5rem;
-  font-weight: normal;
+  
+margin-top: 2rem;
+  
+font-size: 1.1rem;
+  
+font-weight: normal;
+
+margin-bottom: 0.5rem;
+
+letter-spacing: 0.02em;
+color: #666;
+padding-top: 0.6rem;
 }
 
+
+
 h4 {
-  margin-top: 2rem;
-  font-size: 1.05rem;
-  font-weight: normal;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  
+margin-top: 0.15rem;
+  
+font-size: 0.9rem;
+  
+font-weight: normal;
+   
+letter-spacing: 0.02em;
+
+text-transform: none;
+margin-bottom: 1.2rem;
 }
+
+h4 + p {
+  
+margin-top: 0.9rem;
+
+}
+
+
 
 /* Text */
 
+
 p {
-  margin: 1.25rem 0;
-  text-align: justify;
+  
+margin: 1.35rem 0;
+  
+text-align: justify;
+
+hyphens: auto;
+  
+text-wrap: pretty;
 }
+
+
 
 /* Aphoristic fragments */
 
+
+
 .aphorism {
-  margin: 3rem 0;
-  font-style: italic;
-  text-align: center;
+  
+margin: 1.4rem 0;
+  
+line-height:1.6;
+
+letter-spacing:0.02em;
 }
+
+
+/* link subtitle → field.activation */
+
+
+
+.subtitle a{
+
+color: inherit;
+
+text-decoration: none;
+
+border-bottom: none;
+
+}
+
+
+
+.subtitle a:hover{
+
+border-bottom: 1px solid #bbb;
+
+}
+
+
 
 /* Signature */
 
-.signature {
-  margin-top: 3rem;
-  font-style: italic;
+
+.signature{
+
+font-family:"Courier New", monospace;
+
+font-size:0.9rem;
+color:#6a9955;
+
+letter-spacing:0.03em;
+
+margin-top:3.5rem;
+
+opacity:0.85;
+
+}
+
+.signature::before{
+content:"system.log";
+
+display:block;
+
+font-size:0.65rem;
+
+letter-spacing:0.08em;
+
+color:#999;
+
+margin-bottom:0.3rem;
+
 }
 
 /* Contact */
 
+
 .contact-note {
-  margin-top: 1.6rem;
-  font-size: 0.9rem;
-  opacity: 0.75;
+  
+margin-top: 1.6rem;
+  
+font-size: 0.9rem;
+  
+opacity: 0.75;
+
 }
 
-.contact-note a {
-  display: block;
-  margin-top: 0.6rem;
+
+.contact-note{
+
+font-family:"Courier New", monospace;
+
+font-size:0.8rem;
+
+color:#569cd6;
+margin-top:1rem;
+margin-bottom:0rem;
+opacity:0.9;
+
+font-style: normal;
 }
+
+
 
 /* Links */
 
 a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid #bbb;
-  transition: border-color 0.25s ease;
+  
+color: inherit;
+  
+text-decoration: none;
+  
+border-bottom: 1px solid #bbb;
+  
+transition: border-color 0.25s ease;
+
+}
+
+
+
+
+.field-log{
+
+margin-top:40px;
+
+}
+
+.field-structure {
+
+display: block;
+  
+font-family: "Courier New", monospace;
+  
+font-size: 0.9rem;
+  
+line-height: 1.8;
+  
+color: #444;
+
+}
+
+.field-structure span {
+  
+display: block;
+
+}
+
+
+
+.field-structure a {
+  
+color: inherit;
+text-decoration: none;
+
+}
+
+
+
+.field-structure a:hover{
+  
+text-decoration: underline;
+
+}
+
+
+
+.field-log pre{
+
+font-family:"Courier New", monospace;
+
+font-size:0.95rem;
+
+line-height:1.35;
+
+color:#222;
+text-align:left;
+
+margin:0;
+
+
+}
+
+
+
+.field-log a{
+
+
+color:#000;
+
+text-decoration:none;
+
+
+}
+
+
+
+.field-log a:hover{
+
+
+text-decoration:underline;
+
+
+}
+
+
+
+
+.node {
+  
+padding-left: 20px;
+
+}
+
+.status {
+  
+padding-left: 20px;
+margin-top:0.7rem;
+
+}
+
+
+.meta{
+
+
+color:#555;
+
+font-size:0.9rem;
+
+
+}
+
+.tag {
+  
+color: #555;
+
 }
 
 a:link,
 a:visited {
-  color: inherit;
+  
+color: inherit;
+
 }
 
-a:hover {
-  border-bottom-color: #000;
+
+
+a:hover 
+{
+  
+border-bottom-color: #000;
+
 }
+
+
 
 /* Mobile optimization */
 
+
+
 @media (max-width: 680px) {
 
-  body {
-    margin: 60px auto;
-    padding: 0 18px;
-    line-height: 1.65;
-  }
+  
 
-  h2 {
-    font-size: 2rem;
-  }
-
+body {
+    
+margin: 60px auto;
+    
+padding: 0 18px;
+    
+line-height: 1.65;
+  
 }
 
-.spaceform {
-  font-style: italic;
-  font-size: 0.85em;
-  margin-top: 24px;
-  margin-bottom: 6px;
+  
+
+h2 {
+    
+font-size: 2rem;
+  
 }
 
-.subtitle {
-  font-size: 0.95em;
-  letter-spacing: 0.04em;
-  margin-top: 0;
-}
+
+
+
+
+  
+
+
