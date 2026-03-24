@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Field Fracture — HTML Field Lab | spaceform</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="A computational field exposed to progressive fracture. Local resistance and singularities generate instability and reconfiguration within the system. Part of the HTML Field Lab in spaceform.">
+
+<link rel="canonical" href="https://abx-sf.github.io/active-co-emergence/field-fracture.html">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Field Fracture — HTML Field Lab | spaceform">
+<meta property="og:description" content="A computational field exposed to rupture, where instability and resistance generate continuous structural transformation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abx-sf.github.io/active-co-emergence/field-fracture.html">
+<meta property="og:image" content="https://abx-sf.github.io/active-co-emergence/assets/field-fracture.jpg">
+
+<link rel="icon" href="/favicon.ico">
+
+
+<style>
+body{
+margin:0;
+overflow:hidden;
+background:#020705;
+font-family:monospace;
+}
+
+/* ENTER */
+#enter{
+position:fixed;
+bottom:14px;
+left:14px;
+font-size:12px;
+color:#7aff9c;
+opacity:0.5;
+cursor:pointer;
+transition:0.3s;
+z-index:10;
+}
+
+#enter:hover{
+opacity:1;
+}
+
+/* SIGNATURE */
+#sf{
+position:fixed;
+bottom:14px;
+right:18px;
+font-size:11px;
+letter-spacing:0.08em;
+color:#7aff9c;
+opacity:0.25;
+z-index:10;
+}
+
+/* EXPANDED */
+body.expanded #enter{
+opacity:0;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<a href="html-field-lab.html" style="
+position:fixed;
+top:12px;
+right:14px;
+font-size:12px;
+opacity:0.6;
+z-index:1000;
+color:#7aff9c;
+text-decoration:none;
+font-family:monospace;
+">
+field lab
+</a>
+
+
+<div id="enter">enter</div>
+<div id="sf">spaceform — field fragment</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+
+<script>
+
+/* ================= STATE ================= */
+
+let started = false;
+let expanded = false;
+
+/* ================= AUDIO ================= */
+
+let audioCtx, gain;
+let layers = [];
+
+function startSystem(){
+
+if(started) return;
+started = true;
+expanded = true;
+
+document.body.classList.add("expanded");
+
+audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+gain = audioCtx.createGain();
+gain.gain.value = 0.22;
+gain.connect(audioCtx.destination);
+
+/* layers */
+
+for(let i=0;i<2;i++){
+
+const osc = audioCtx.createOscillator();
+const g = audioCtx.createGain();
+
+osc.type = i===0 ? "triangle" : "sine";
+osc.frequency.value = 40 + i*90;
+
+g.gain.value = 0.05;
+
+osc.connect(g);
+g.connect(gain);
+osc.start();
+
+layers.push({osc,g});
+
+}
+
+/* fracture audio */
+
+function fractureAudio(){
+
+layers.forEach(l=>{
+
+if(Math.random()>0.4){
+l.g.gain.setTargetAtTime(0.05+Math.random()*0.04,audioCtx.currentTime,0.3);
+}else{
+l.g.gain.setTargetAtTime(0.002,audioCtx.currentTime,0.2);
+}
+
+l.osc.frequency.setTargetAtTime(
+20 + Math.random()*500,
+audioCtx.currentTime,
+0.6
+);
+
+});
+
+if(Math.random()>0.7){
+gain.gain.setTargetAtTime(0.16, audioCtx.currentTime, 0.2);
+}else{
+gain.gain.setTargetAtTime(0.08 + Math.random()*0.05, audioCtx.currentTime, 0.5);
+}
+
+setTimeout(fractureAudio, 1200 + Math.random()*3000);
+
+}
+
+fractureAudio();
+
+}
+
+/* ================= FULLSCREEN ================= */
+
+function goFullscreen(){
+if(document.documentElement.requestFullscreen){
+document.documentElement.requestFullscreen();
+}
+}
+
+/* ================= INTERACTION ================= */
+
+function handleInteraction(){
+
+if(!expanded){
+startSystem();
+} else {
+goFullscreen();
+}
+
+}
+
+/* enter */
+
+document.getElementById("enter").addEventListener("click",(e)=>{
+e.stopPropagation();
+handleInteraction();
+});
+
+/* click ovunque */
+
+document.addEventListener("click", handleInteraction);
+
+/* ================= SCENE ================= */
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x020705,20,160);
+
+const camera = new THREE.PerspectiveCamera(
+65,
+window.innerWidth/window.innerHeight,
+0.1,
+400
+);
+
+camera.position.z = 70;
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setClearColor(0x020705);
+
+document.body.appendChild(renderer.domElement);
+
+/* ================= STRUCTURE ================= */
+
+const group = new THREE.Group();
+scene.add(group);
+
+const material = new THREE.LineBasicMaterial({
+color:0x7aff9c,
+transparent:true,
+opacity:0.8
+});
+
+for(let i=0;i<260;i++){
+
+const base = new THREE.Vector3(
+(Math.random()-0.5)*150,
+(Math.random()-0.5)*150,
+(Math.random()-0.5)*150
+);
+
+const geo = new THREE.BufferGeometry().setFromPoints([
+base.clone(),
+base.clone().add(new THREE.Vector3(
+(Math.random()-0.5)*10,
+(Math.random()-0.5)*10,
+(Math.random()-0.5)*10
+))
+]);
+
+const line = new THREE.Line(geo,material);
+
+line.position.copy(base);
+
+line.userData.vel = new THREE.Vector3(
+(Math.random()-0.5)*0.02,
+(Math.random()-0.5)*0.02,
+(Math.random()-0.5)*0.02
+);
+
+line.userData.resistance = Math.random();
+
+group.add(line);
+
+}
+
+/* ================= HOLES ================= */
+
+const holes=[];
+
+function hole(x,y,z){
+
+const geo = new THREE.SphereGeometry(2,16,16);
+const mat = new THREE.MeshBasicMaterial({
+color:0x000000,
+transparent:true,
+opacity:0.8
+});
+
+const m = new THREE.Mesh(geo,mat);
+m.position.set(x,y,z);
+
+scene.add(m);
+holes.push(m);
+
+}
+
+hole(30,20,-30);
+hole(-35,-20,40);
+
+/* ================= FRACTURE ================= */
+
+let fracture = 0.3;
+
+setInterval(()=>{
+fracture += (Math.random()*0.03 - 0.015);
+fracture = Math.max(0.15, Math.min(1, fracture));
+}, 3000 + Math.random()*4000);
+
+/* ================= ANIMATION ================= */
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+let force = 0.003 + Math.random()*0.003;
+const t = Date.now()*0.0002;
+
+holes.forEach((h,i)=>{
+h.position.x += Math.sin(t+i)*0.02;
+h.position.y += Math.cos(t+i*0.7)*0.02;
+});
+
+group.rotation.y += 0.0006;
+group.rotation.x += 0.0003;
+
+group.children.forEach(l=>{
+
+l.position.add(l.userData.vel);
+
+const effect = fracture*(1-l.userData.resistance);
+
+/* tension / yielding */
+
+if(Math.random()>0.6){
+l.userData.vel.multiplyScalar(0.98);
+}else{
+l.userData.vel.multiplyScalar(
+0.995 + effect*(0.02 + Math.random()*0.04)
+);
+}
+
+/* attraction */
+
+holes.forEach(h=>{
+
+const d = new THREE.Vector3().subVectors(h.position,l.position);
+const dist = d.length()+0.3;
+
+d.normalize();
+
+l.position.add(
+d.multiplyScalar(
+force*(effect?50/dist:20/dist)
+)
+);
+
+});
+
+/* reduction / re-emergence */
+
+const reduction = 0.997 - effect*(0.002 + Math.random()*0.003);
+l.scale.multiplyScalar(reduction);
+
+if(l.scale.x < 0.15 && Math.random()>0.7){
+l.scale.set(0.4,0.4,0.4);
+}
+
+});
+
+renderer.render(scene,camera);
+
+}
+
+animate();
+
+/* ================= RESIZE ================= */
+
+window.addEventListener("resize",()=>{
+camera.aspect = window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
+</script>
+
+</body>
+</html>
