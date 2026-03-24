@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="A distributed computational field exploring emergence, interaction, and instability within an operational system. Part of the HTML Field Lab in spaceform.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Plural Emergent Field — HTML Field Lab | spaceform">
+<meta property="og:description" content="A distributed computational field exploring emergence, interaction, and instability within an operational system.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abx-sf.github.io/active-co-emergence/plural-emergent-field.html">
+<meta property="og:image" content="https://abx-sf.github.io/active-co-emergence/assets/plural-emergent-field.jpg">
+<link rel="icon" href="/favicon.ico">
+<link rel="canonical" href="https://abx-sf.github.io/active-co-emergence/plural-emergent-field.html">
+<meta name="robots" content="index, follow">
+<title>Plural Emergent Field — HTML Field Lab | spaceform</title>
+
+<style>
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:#05060a;
+}
+
+/* ENTER */
+
+#enter{
+position:fixed;
+bottom:14px;
+left:14px;
+font-family:monospace;
+font-size:12px;
+color:#8affef;
+opacity:0.6;
+cursor:pointer;
+transition:0.3s;
+z-index:10;
+}
+
+#enter:hover{
+opacity:1;
+}
+
+/* SIGNATURE */
+
+#sf{
+position:fixed;
+bottom:14px;
+right:18px;
+font-family:monospace;
+font-size:11px;
+letter-spacing:0.08em;
+color:#6fffb0;
+opacity:0.25;
+z-index:10;
+}
+
+/* EXPANDED */
+
+body.expanded #enter{
+opacity:0;
+pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<a href="html-field-lab.html" style="
+position:fixed;
+top:12px;
+right:14px;
+font-size:12px;
+opacity:0.6;
+z-index:1000;
+color:#7aff9c;
+text-decoration:none;
+font-family:monospace;
+">
+field lab
+</a>
+
+
+<div id="enter">enter</div>
+<div id="sf">spaceform — field fragment</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+
+<script>
+
+/* ================= STATE ================= */
+
+let started = false;
+let expanded = false;
+
+/* ================= AUDIO ================= */
+
+let audioCtx, master, analyser;
+let layers=[];
+
+function startSystem(){
+
+if(started) return;
+started = true;
+expanded = true;
+
+document.body.classList.add("expanded");
+
+audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+master = audioCtx.createGain();
+master.gain.value = 0.4;
+master.connect(audioCtx.destination);
+
+analyser = audioCtx.createAnalyser();
+analyser.fftSize = 256;
+master.connect(analyser);
+
+for(let i=0;i<3;i++){
+
+const osc = audioCtx.createOscillator();
+osc.type="sawtooth";
+osc.frequency.value = 60 + i*30;
+
+const g = audioCtx.createGain();
+g.gain.value = 0.05;
+
+osc.connect(g);
+g.connect(master);
+osc.start();
+
+layers.push({osc,g});
+}
+
+}
+
+/* ================= FULLSCREEN ================= */
+
+function goFullscreen(){
+if(document.documentElement.requestFullscreen){
+document.documentElement.requestFullscreen();
+}
+}
+
+/* ================= INTERACTION ================= */
+
+function handleInteraction(){
+
+if(!expanded){
+startSystem();
+} else {
+goFullscreen();
+}
+
+}
+
+/* ENTER click */
+
+document.getElementById("enter").addEventListener("click", (e)=>{
+e.stopPropagation();
+handleInteraction();
+});
+
+/* click anywhere (fallback + mobile) */
+
+document.addEventListener("click", handleInteraction);
+
+/* ================= SCENE ================= */
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x05060a,40,220);
+
+const camera = new THREE.PerspectiveCamera(
+65, innerWidth/innerHeight, 0.1, 400
+);
+camera.position.z = 110;
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth,innerHeight);
+renderer.setClearColor(0x05060a);
+document.body.appendChild(renderer.domElement);
+
+const group = new THREE.Group();
+scene.add(group);
+
+/* ================= PARTICLES ================= */
+
+let particles=[];
+
+for(let i=0;i<320;i++){
+
+const geo = new THREE.SphereGeometry(0.35,6,6);
+const mat = new THREE.MeshBasicMaterial({color:0x6fffb0});
+
+const p = new THREE.Mesh(geo,mat);
+
+p.position.set(
+(Math.random()-0.5)*140,
+(Math.random()-0.5)*140,
+(Math.random()-0.5)*140
+);
+
+p.velocity = new THREE.Vector3(
+(Math.random()-0.5)*0.15,
+(Math.random()-0.5)*0.15,
+(Math.random()-0.5)*0.15
+);
+
+group.add(p);
+particles.push(p);
+}
+
+/* ================= ATTRACTOR ================= */
+
+let attractors=[];
+
+for(let i=0;i<6;i++){
+attractors.push(new THREE.Vector3(
+(Math.random()-0.5)*100,
+(Math.random()-0.5)*100,
+(Math.random()-0.5)*100
+));
+}
+
+/* ================= ANIMATION ================= */
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+attractors.forEach(a=>{
+a.x += (Math.random()-0.5)*0.4;
+a.y += (Math.random()-0.5)*0.4;
+a.z += (Math.random()-0.5)*0.4;
+});
+
+particles.forEach(p=>{
+
+attractors.forEach(a=>{
+const d = new THREE.Vector3().subVectors(a,p.position);
+const dist = d.length()+1;
+d.normalize();
+p.velocity.add(d.multiplyScalar(0.04/dist));
+});
+
+particles.forEach(o=>{
+if(p===o) return;
+const d = new THREE.Vector3().subVectors(o.position,p.position);
+const dist = d.length();
+if(dist<6){
+d.normalize();
+p.velocity.add(d.multiplyScalar(0.01));
+}
+});
+
+p.position.add(p.velocity);
+p.velocity.multiplyScalar(0.975);
+
+["x","y","z"].forEach(axis=>{
+if(p.position[axis]>160) p.position[axis]=-160;
+if(p.position[axis]<-160) p.position[axis]=160;
+});
+
+});
+
+if(analyser){
+
+const data = new Uint8Array(analyser.frequencyBinCount);
+analyser.getByteFrequencyData(data);
+
+const energy = data.reduce((a,b)=>a+b)/data.length;
+
+layers.forEach((l,i)=>{
+l.osc.frequency.value = 50 + energy*0.25 + i*20;
+});
+
+}
+
+group.rotation.y += 0.00035;
+group.rotation.x += 0.00018;
+
+renderer.render(scene,camera);
+
+}
+
+animate();
+
+/* ================= RESIZE ================= */
+
+addEventListener("resize",()=>{
+camera.aspect = innerWidth/innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(innerWidth,innerHeight);
+});
+
+</script>
+
+</body>
+</html>
+
