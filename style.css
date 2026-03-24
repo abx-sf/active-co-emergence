@@ -1,6 +1,6 @@
 /* =========================
    Active Co-Emergence
-   SpaceForm Editorial Style
+   spaceform Editorial Style
    ========================= 
 
 */
@@ -476,7 +476,14 @@ border-bottom-color: #000;
 
 /* Mobile optimization */
 
+#lab-link.processing{
 
+color:#000;
+
+opacity:1;
+
+border-bottom:1px solid #2ecc71;
+}
 
 @media (max-width: 680px) {
 
@@ -499,6 +506,9 @@ h2 {
 font-size: 2rem;
   
 }
+
+
+
 
 
 
