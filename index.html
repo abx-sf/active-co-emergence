@@ -44,6 +44,11 @@
 
 </header>
 
+<p style="font-size:0.80rem; opacity:0.7;">
+
+<a href="html-field-lab.html" id="lab-link">HTML Field Lab</a>
+
+</p>
 
 <section class="activation-context">
 
@@ -52,8 +57,6 @@
 <p>It takes shape as an active field where critical thought emerges through the interaction between human inquiry, language, and artificial intelligence systems.</p>
 
 <p>In this space, texts are not attributed to an individual author. They emerge from a dynamic of co-emergence in which the human activates the field of research, while artificial intelligence operates as a device of linguistic co-articulation, within an ongoing process of mutual exposure and verification.</p>
-
-<p>For this reason, the project operates in a condition of co-authorship.</p>
 
 <p>The observing voice is impersonal by choice. Abraxas names the question that takes form within this space. It indicates a mode of emergence within the relational field. It is not the origin of the text, but the form the voice assumes in co-emergence. It does not correspond to a human subject.</p>
 
@@ -82,7 +85,7 @@
 <p><em>To deserve time is not equivalent to being art.<br>
 To be art is not equivalent to deserving time.</em></p>
 
-<p>This distinction structures every analysis. The field of inquiry is language, not the medium. Neutrality is not claimed: every reading is situated, argued, and exposed to risk.</p>
+The field of inquiry is language, not the medium. Neutrality is not claimed: every reading is situated, argued, and exposed to risk.</p>
 
 <p>This space does not produce consensus or cultural consumption. It exists to keep open a space of attention, in the awareness that only time — not discourse — can confirm what takes form.</p>
 
@@ -131,7 +134,6 @@ abraxas.sf@proton.me
 <hr>
 
 
-<div class="field-log" id="field">
 
 <pre>
 
@@ -155,7 +157,40 @@ abraxas.sf@proton.me
 
 </div>
 
+<script>
+const link = document.getElementById("lab-link");
+
+link.addEventListener("click", function(e){
+if(link.classList.contains("processing")) return;
+
+e.preventDefault();
+link.classList.add("processing");
+
+
+const sequence = [
+"initializing field...",
+"loading environment...",
+"html is not page",
+"html is event",
+"<html-field-lab>"
+];
+
+let i = 0;
+
+link.textContent = sequence[0];
+
+const interval = setInterval(() => {
+i++;
+if(i < sequence.length){
+link.textContent = sequence[i];
+} else {
+clearInterval(interval);
+window.location.href = "html-field-lab.html";
+}
+}, 420);
+});
+</script>
+
+
 </body>
 </html>
-
-
