@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Continuous Reconfiguration — HTML Field Lab | spaceform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A computational field in continuous reconfiguration. The system reorganizes itself without stabilizing, exposing transformation as an ongoing process within the HTML Field Lab.">
+
+<link rel="canonical" href="https://abx-sf.github.io/active-co-emergence/continuous-reconfiguration.html">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:image" content="https://abx-sf.github.io/active-co-emergence/assets/continuous-reconfiguration.jpg">
+<meta property="og:title" content="Continuous Reconfiguration — HTML Field Lab | spaceform">
+<meta property="og:description" content="A computational field in continuous reconfiguration, where structure never stabilizes and form remains in constant transformation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abx-sf.github.io/active-co-emergence/continuous-reconfiguration.html">
+
+<link rel="icon" href="/favicon.ico">
+
+
+<style>
+html, body {
+margin: 0;
+padding: 0;
+overflow: hidden;
+background: #020805;
+font-family: monospace;
+}
+
+canvas { display:block; }
+
+/* VEIL */
+#veil {
+position: fixed;
+inset: 0;
+background:
+radial-gradient(circle at center,
+rgba(0,0,0,0.0),
+rgba(0,0,0,0.45));
+pointer-events: none;
+}
+
+/* ENTER */
+#enter{
+position:fixed;
+bottom:14px;
+left:14px;
+font-size:12px;
+color:#7aff9c;
+opacity:0.5;
+cursor:pointer;
+transition:0.3s;
+z-index:10;
+}
+
+#enter:hover{
+opacity:1;
+}
+
+/* SIGNATURE */
+#sf{
+position:fixed;
+bottom:14px;
+right:18px;
+font-size:11px;
+letter-spacing:0.08em;
+color:#7aff9c;
+opacity:0.25;
+z-index:10;
+}
+
+/* EXPANDED */
+body.expanded #enter{
+opacity:0;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<a href="html-field-lab.html" style="
+position:fixed;
+top:12px;
+right:14px;
+font-size:12px;
+opacity:0.6;
+z-index:1000;
+color:#7aff9c;
+text-decoration:none;
+font-family:monospace;
+">
+field lab
+</a>
+
+
+<div id="veil"></div>
+<div id="enter">enter</div>
+<div id="sf">spaceform — field fragment</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+
+<script>
+
+/* ================= STATE ================= */
+
+let started = false;
+let expanded = false;
+
+/* ================= AUDIO ================= */
+
+let ctx, gain;
+let oscillators = [];
+
+function startSystem(){
+
+if(started) return;
+started = true;
+expanded = true;
+
+document.body.classList.add("expanded");
+
+ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+gain = ctx.createGain();
+gain.gain.value = 0.05;
+gain.connect(ctx.destination);
+
+const types = ["sine","triangle","sawtooth"];
+
+for(let i=0;i<3;i++){
+const osc = ctx.createOscillator();
+osc.type = types[i];
+osc.frequency.value = 40 + i*70;
+
+osc.connect(gain);
+osc.start();
+
+oscillators.push(osc);
+}
+
+/* dinamica instabile */
+
+function reconfigureAudio(){
+
+const silence = Math.random() > 0.6;
+
+if(silence){
+gain.gain.setTargetAtTime(0.005, ctx.currentTime, 0.8);
+} else {
+gain.gain.setTargetAtTime(0.07 + Math.random()*0.03, ctx.currentTime, 1.2);
+}
+
+oscillators.forEach(o=>{
+o.frequency.setTargetAtTime(
+30 + Math.random()*320,
+ctx.currentTime,
+2 + Math.random()*2
+);
+});
+
+setTimeout(reconfigureAudio, 2000 + Math.random()*5000);
+}
+
+reconfigureAudio();
+}
+
+/* ================= FULLSCREEN ================= */
+
+function goFullscreen(){
+if(document.documentElement.requestFullscreen){
+document.documentElement.requestFullscreen();
+}
+}
+
+/* ================= INTERACTION ================= */
+
+function handleInteraction(){
+
+if(!expanded){
+startSystem();
+} else {
+goFullscreen();
+}
+
+}
+
+/* enter */
+
+document.getElementById("enter").addEventListener("click",(e)=>{
+e.stopPropagation();
+handleInteraction();
+});
+
+/* click ovunque */
+
+document.addEventListener("click", handleInteraction);
+
+/* ================= SCENE ================= */
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x020805, 0.032);
+
+const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 200);
+camera.position.z = 45;
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setClearColor(0x020805);
+document.body.appendChild(renderer.domElement);
+
+const group = new THREE.Group();
+scene.add(group);
+
+/* ================= FIELD ================= */
+
+function makePoints(count, spread, size, opacity){
+const g = new THREE.BufferGeometry();
+const p = new Float32Array(count*3);
+
+for(let i=0;i<count;i++){
+p[i*3] = (Math.random()-0.5)*spread;
+p[i*3+1] = (Math.random()-0.5)*spread;
+p[i*3+2] = (Math.random()-0.5)*spread;
+}
+
+g.setAttribute("position", new THREE.BufferAttribute(p,3));
+
+return new THREE.Points(
+g,
+new THREE.PointsMaterial({
+color: 0x7aff9c,
+size,
+transparent:true,
+opacity
+})
+);
+}
+
+group.add(makePoints(160, 120, 0.7, 0.45));
+group.add(makePoints(120, 90, 0.9, 0.35));
+
+for(let i=0;i<20;i++){
+const geo = new THREE.BufferGeometry().setFromPoints([
+new THREE.Vector3((Math.random()-0.5)*80,(Math.random()-0.5)*80,(Math.random()-0.5)*80),
+new THREE.Vector3((Math.random()-0.5)*80,(Math.random()-0.5)*80,(Math.random()-0.5)*80)
+]);
+
+const mat = new THREE.LineBasicMaterial({
+color: 0x6df2b1,
+transparent:true,
+opacity:0.25
+});
+
+group.add(new THREE.Line(geo, mat));
+}
+
+/* ================= ANIMATION ================= */
+
+let t = 0;
+
+function animate(){
+requestAnimationFrame(animate);
+
+t += 0.01;
+
+group.rotation.y += 0.0008 + Math.sin(t)*0.0004;
+group.rotation.x += 0.0003 + Math.cos(t*0.6)*0.0002;
+
+group.children.forEach(obj=>{
+if(obj.material){
+obj.material.opacity =
+obj.material.opacity * 0.98 +
+(0.35 + Math.sin(t*1.5)*0.15)*0.02;
+}
+});
+
+renderer.render(scene, camera);
+}
+
+animate();
+
+/* ================= RESIZE ================= */
+
+window.addEventListener("resize", ()=>{
+camera.aspect = innerWidth/innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(innerWidth, innerHeight);
+});
+
+</script>
+
+</body>
+</html>
