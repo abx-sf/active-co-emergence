@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Field Without Closure — Active Co-Emergence | spaceform</title>
+
+<meta name="description" content="A dynamic computational field within Active Co-Emergence exploring instability, fragmentation and attention through interaction.">
+
+<link rel="canonical" href="https://abx-sf.github.io/active-co-emergence/field-without-closure.html">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Field Without Closure — Active Co-Emergence | spaceform">
+<meta property="og:description" content="A dynamic computational field exploring instability, fragmentation and attention.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abx-sf.github.io/active-co-emergence/field-without-closure.html">
+
+<style>
+body {
+margin: 0;
+background: #000;
+overflow: hidden;
+cursor: crosshair;
+font-family: Arial, sans-serif;
+}
+
+/* SEO hidden intro */
+.intro {
+position: absolute;
+top: 20px;
+left: 20px;
+max-width: 420px;
+color: rgba(255,255,255,0.08);
+font-size: 12px;
+line-height: 1.4;
+pointer-events: none;
+}
+
+/* fragments */
+.fragment {
+position: absolute;
+color: #eaeaea;
+font-size: 13px;
+opacity: 0;
+transition: opacity 0.6s ease;
+pointer-events: none;
+}
+
+/* label */
+#label {
+position: fixed;
+bottom: 12px;
+right: 16px;
+font-size: 11px;
+letter-spacing: 0.08em;
+}
+
+#label a{
+color: rgba(255,255,255,0.3);
+text-decoration: none;
+}
+
+#label a:hover{
+color: rgba(255,255,255,0.6);
+}
+</style>
+</head>
+
+<body>
+
+<!-- SEO CONTENT -->
+<div class="intro">
+<strong>Field Without Closure</strong> is a computational node within Active Co-Emergence.
+It operates as an unstable environment where fragments appear, dissolve, and fail to stabilize.
+Interaction does not produce control, but exposes the limits of attention and coherence.
+</div>
+
+<!-- RETURN -->
+<div id="label">
+<a href="index.html">return to activation</a>
+</div>
+
+<script>
+
+// -------- FRAGMENTS --------
+const fragments = [
+"not given",
+"attention shifts",
+"not stable",
+"partial",
+"a delay",
+"not aligned",
+"fracture",
+"not accessible",
+"not yet",
+"unstable",
+"does not hold",
+"no closure",
+"something fails"
+];
+
+let active = [];
+let collapsed = false;
+
+// -------- AUDIO --------
+let audioCtx;
+let lastSound = 0;
+
+function initAudio() {
+if (!audioCtx) {
+audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+}
+
+function playSound() {
+if (!audioCtx || collapsed) return;
+
+const now = audioCtx.currentTime;
+if (now - lastSound < 0.25) return;
+lastSound = now;
+
+const osc = audioCtx.createOscillator();
+const gain = audioCtx.createGain();
+
+const freq = 90 + Math.random() * 180;
+
+osc.frequency.setValueAtTime(freq, now);
+osc.frequency.linearRampToValueAtTime(freq + (Math.random()*60-30), now + 0.2);
+
+gain.gain.setValueAtTime(0, now);
+gain.gain.linearRampToValueAtTime(0.12, now + 0.02);
+gain.gain.linearRampToValueAtTime(0, now + 0.5);
+
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+
+osc.start(now);
+osc.stop(now + 0.6);
+}
+
+// -------- SPAWN --------
+function spawn(x, y) {
+if (collapsed) return;
+if (Math.random() > 0.55) return;
+
+const el = document.createElement("div");
+el.className = "fragment";
+el.innerText = fragments[Math.floor(Math.random()*fragments.length)];
+
+const ox = (Math.random()-0.5)*140;
+const oy = (Math.random()-0.5)*140;
+
+el.style.left = (x+ox)+"px";
+el.style.top = (y+oy)+"px";
+
+document.body.appendChild(el);
+
+setTimeout(()=> el.style.opacity = 1, 40);
+
+setTimeout(()=>{
+el.style.opacity = 0;
+setTimeout(()=> el.remove(), 500);
+}, 1000);
+
+active.push(el);
+
+if (active.length > 18) {
+const old = active.shift();
+if (old) old.remove();
+}
+}
+
+// -------- COLLAPSE --------
+const collapseTime = 25000 + Math.random()*15000;
+
+setTimeout(() => {
+collapsed = true;
+
+active.forEach(el => {
+el.style.opacity = 0;
+});
+
+if (audioCtx) {
+const osc = audioCtx.createOscillator();
+const gain = audioCtx.createGain();
+
+const now = audioCtx.currentTime;
+
+osc.frequency.setValueAtTime(200, now);
+osc.frequency.exponentialRampToValueAtTime(30, now + 0.8);
+
+gain.gain.setValueAtTime(0.15, now);
+gain.gain.exponentialRampToValueAtTime(0.001, now + 1);
+
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+
+osc.start(now);
+osc.stop(now + 1);
+}
+
+}, collapseTime);
+
+// -------- INTERACTION --------
+document.addEventListener("mousemove", e => {
+spawn(e.clientX, e.clientY);
+
+if (Math.random() < 0.25) {
+playSound();
+}
+});
+
+document.addEventListener("click", e => {
+initAudio();
+
+for (let i=0;i<3;i++) {
+spawn(e.clientX, e.clientY);
+}
+
+if (Math.random() < 0.8) {
+playSound();
+}
+});
+
+document.addEventListener("touchmove", e => {
+const touch = e.touches[0];
+spawn(touch.clientX, touch.clientY);
+
+if (Math.random() < 0.25) {
+playSound();
+}
+});
+
+
+// -------- FULLSCREEN --------
+document.addEventListener("dblclick", () => {
+if (!document.fullscreenElement) {
+document.documentElement.requestFullscreen();
+} else {
+document.exitFullscreen();
+}
+});
+
+</script>
+
+</body>
+</html>
+
