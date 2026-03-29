@@ -4,10 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="EA31kc2_XJuy4xpdcAPbFbKJ7b9U4ftlzh6-VtYI_rU" />
+<meta name="description" content="Active Co-Emergence is a critical research space exploring how meaning emerges through attention, language and AI systems within spaceform.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Active Co-Emergence | spaceform">
+
+<meta property="og:description" content="A critical research space exploring emergence, language and attention.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abx-sf.github.io/active-co-emergence/">
 
 <title>Activation — Active Co-Emergence | spaceform Critical Research Space</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<link rel="canonical" href="https://abx-sf.github.io/active-co-emergence/">
 
 <link rel="stylesheet" href="style.css">
 
@@ -44,9 +54,17 @@
 
 </header>
 
+
 <p style="font-size:0.80rem; opacity:0.7;">
 
-<a href="html-field-lab.html" id="lab-link">HTML Field Lab</a>
+
+
+<a href="html-field-lab.html" id="lab-link" title="HTML Field Lab - computational field experiments">
+
+HTML Field Lab
+
+</a>
+
 
 </p>
 
@@ -155,14 +173,14 @@ abraxas.sf@proton.me
 
 
 
-</div>
-
 <script>
 const link = document.getElementById("lab-link");
 
 link.addEventListener("click", function(e){
 if(link.classList.contains("processing")) return;
 
+if(e.ctrlKey || e.metaKey) 
+return;
 e.preventDefault();
 link.classList.add("processing");
 
