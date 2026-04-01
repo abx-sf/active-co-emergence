@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://abx-sf.github.io/active-co-emergence/</loc>
-<lastmod>2026-03-29</lastmod>
+<lastmod>2026-04-01</lastmod>
 </url>
 
 <url>
@@ -20,22 +21,56 @@
 </url>
 
 <url>
-<loc>https://abx-sf.github.io/active-co-emergence/the-automatic-atmosphere.html</loc>
-<lastmod>2026-03-12</lastmod>
+ <loc>https://abx-sf.github.io/active-co-emergence/the-automatic-atmosphere.html</loc>
+ <lastmod>2026-03-12</lastmod>
 </url>
 
 <url>
-<loc>https://abx-sf.github.io/active-co-emergence/from-function-to-method.html</loc>
-<lastmod>2026-03-17</lastmod>
+  <loc>https://abx-sf.github.io/active-co-emergence/from-function-to-method.html</loc>
+  <lastmod>2026-03-17</lastmod>
 </url>
 
-<url>
-<loc>https://abx-sf.github.io/active-co-emergence/research-in-its-consumption.html</loc>
+ <url>
+  <loc>https://abx-sf.github.io/active-co-emergence/research-in-its-consumption.html</loc>
 </url>
 
 <url>
 <loc>https://abx-sf.github.io/active-co-emergence/html-field-lab.html</loc>
 <lastmod>2026-03-29</lastmod>
 </url>
+
+<url>
+<loc>https://abx-sf.github.io/active-co-emergence/plural-emergent-field.html</loc>
+<lastmod>2026-03-24</lastmod>
+</url>
+
+<url>
+<loc>https://abx-sf.github.io/active-co-emergence/continuous-reconfiguration.html</loc>
+<lastmod>2026-03-24</lastmod>
+</url>
+
+<url>
+
+<loc>https://abx-sf.github.io/active-co-emergence/field-fracture.html</loc>
+
+<lastmod>2026-03-24</lastmod>
+
+</url>
+
+<url>
+<loc>https://abx-sf.github.io/active-co-emergence/field-without-closure.html</loc>
+<lastmod>2026-03-29</lastmod>
+</url>
+
+<url>
+<loc>https://abx-sf.github.io/active-co-emergence/it-doesnt-give-in-right-away-it-operates.html</loc>
+<lastmod>2026-04-01</lastmod>
+</url>
+
+<url>
+<loc>https://abx-sf.github.io/active-co-emergence/meaning-as-interval.html</loc>
+<lastmod>2026-04-01</lastmod>
+</url>
+
 
 </urlset>
