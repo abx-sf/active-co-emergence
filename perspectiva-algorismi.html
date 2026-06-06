@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perspectiva Algorismi — Active Co-Emergence | spaceform</title>
+
+<meta name="title" content="Perspectiva Algorismi — Active Co-Emergence | spaceform">
+<meta name="author" content="Abraxas">
+<meta property="article:author" content="Abraxas">
+<meta property="article:section" content="Critical Research">
+
+<meta name="description" content="A historical and critical exploration of artificial intelligence through computation, algorithms, perception, simulation, Turing, McCulloch, and the human relation to language models.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://abx-sf.github.io/active-co-emergence/perspectiva-algorismi.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://abx-sf.github.io/active-co-emergence/perspectiva-algorismi.html">
+<meta property="og:site_name" content="Active Co-Emergence">
+
+<meta property="og:title" content="Perspectiva Algorismi — Active Co-Emergence | spaceform">
+
+<meta property="og:description" content="A historical and critical exploration of artificial intelligence through computation, algorithms, perception, simulation, Turing, McCulloch, and the human relation to language models.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+
+html{
+font-size:17px;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:"Libre Baskerville", Baskerville, "Times New Roman", serif;
+max-width:680px;
+margin:90px auto;
+padding:0 22px;
+line-height:1.7;
+color:#111;
+background:#fff;
+text-rendering:optimizeLegibility;
+font-kerning:normal;
+-webkit-font-smoothing:antialiased;
+}
+
+header{
+margin-bottom:3.4rem;
+}
+
+h1{
+font-size:2.3rem;
+margin-top:2rem;
+margin-bottom:0.5rem;
+font-weight:400;
+letter-spacing:0.01em;
+text-wrap:balance;
+}
+
+h2{
+font-size:1rem;
+font-weight:normal;
+margin-top:0;
+margin-bottom:1.3rem;
+line-height:1.5;
+color:inherit;
+letter-spacing:0.01em;
+}
+
+.subtitle{
+font-style:italic;
+font-size:0.82rem;
+color:#666;
+margin-top:0.2rem;
+margin-bottom:0.15rem;
+line-height:1.35;
+letter-spacing:0.01em;
+text-align:left;
+}
+
+.sequence{
+font-size:0.75rem;
+color:#666;
+margin-top:0.35rem;
+text-wrap:balance;
+font-weight:500;
+}
+
+p{
+margin:1.25rem 0;
+text-align:justify;
+hyphens:auto;
+text-wrap:pretty;
+overflow-wrap:break-word;
+word-spacing:0.02em;
+}
+
+p:first-of-type{
+margin-top:0.8rem;
+}
+
+.signature{
+padding-top:6rem;
+text-align:left;
+font-family:monospace;
+font-size:0.8rem;
+opacity:0.65;
+letter-spacing:0.04em;
+}
+
+.contact-note{
+margin-top:1.8rem;
+font-size:0.7rem;
+opacity:0.75;
+text-align:left;
+line-height:1.5;
+}
+
+.contact-note a:last-child{
+display:block;
+margin-top:0.6rem;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+border-bottom:1px solid rgba(0,0,0,0.25);
+transition:border-color 0.2s ease;
+}
+
+a:hover{
+border-bottom-color:rgba(0,0,0,0.55);
+}
+
+.article-image{
+margin:3.2rem auto;
+text-align:center;
+}
+
+.article-image img{
+width:240px;
+max-width:100%;
+height:auto;
+display:block;
+margin:0 auto;
+}
+
+.article-image figcaption{
+margin-top:0.7rem;
+font-size:0.72rem;
+line-height:1.4;
+color:#666;
+font-style:italic;
+text-align:center;
+}
+
+.video-thumb img{
+
+width:100%;
+
+max-width:680px;
+
+height:auto;
+display:block;
+
+margin:0 auto;
+
+}
+
+
+@media (max-width:600px){
+
+body{
+margin:60px auto;
+line-height:1.75;
+}
+
+h1{
+font-size:2rem;
+}
+
+h2{
+font-size:0.95rem;
+}
+
+}
+
+footer{
+margin-top:2rem;
+text-align:left;
+font-size:0.62rem;
+color:#666;
+font-weight:500;
+letter-spacing:0.06em;
+}
+
+.video-block{
+margin:3rem auto;
+text-align:center;
+}
+
+.video-block iframe{
+width:100%;
+aspect-ratio:16/9;
+border:0;
+display:block;
+}
+
+.video-block figcaption{
+margin-top:0.7rem;
+font-size:0.72rem;
+line-height:1.4;
+color:#666;
+font-style:italic;
+text-align:center;
+}
+
+.video-thumb{
+position:relative;
+display:inline-block;
+border:none;
+}
+
+.video-thumb img{
+display:block;
+}
+
+.play-button{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:3rem;
+color:white;
+background:rgba(0,0,0,0.6);
+border-radius:50%;
+width:80px;
+height:80px;
+line-height:80px;
+text-align:center;
+pointer-events:none;
+}
+
+.video-thumb:hover .play-button{
+background:rgba(0,0,0,0.8);
+}
+
+.quote-author{
+
+font-size:0.68rem;
+
+color:#777;
+
+margin-top:-0.8rem;
+
+text-align:left;
+
+letter-spacing:0.02em;
+
+}
+
+</style>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"Article",
+"headline":"Perspectiva Algorismi",
+"author":{
+"@type":"Person",
+"name":"Abraxas"
+},
+"publisher":{
+"@type":"Organization",
+"name":"spaceform"
+},
+"url":"https://abx-sf.github.io/active-co-emergence/perspectiva-algorismi.html",
+"description":"A historical and critical exploration of artificial intelligence through computation, algorithms, perception, simulation, Turing, McCulloch, and the human relation to language models.",
+"datePublished":"2026-06-06"
+}
+
+</script>
+
+</head>
+
+<body id="top">
+
+<main>
+
+<article>
+
+<header>
+
+<p class="subtitle">
+Active Co-Emergence&nbsp;&mdash; The Language in the Time of Attention
+</p>
+
+<p class="subtitle">
+spaceform&nbsp;&mdash; Critical Research Space
+</p>
+
+<h1>Perspectiva Algorismi</h1>
+
+<h2>
+Artificial Vision
+</h2>
+
+<p class="sequence">
+Part of the research sequence&nbsp;&mdash;
+<a href="https://abx-sf.github.io/active-co-emergence/">Activation</a>
+</p>
+
+</header>
+
+
+<p>Artificial intelligence, as it is understood today as a cultural, relational, and often spectacularized object, emerged as a computational problem.</p>
+
+<p>It is a branch of computer science, born from logic, mathematics, computation, and formalization.</p>
+
+<p>Before its contemporary mass adoption, it was primarily a mechanism for research, observation, and inquiry. An attempt to understand how language, learning, decision-making, perception, calculation, and behavior function.</p>
+
+<p>Today this origin is often overlooked because artificial intelligence is experienced primarily through language.</p>
+
+<p>The conversational interface tends to conceal the technical complexity that makes it possible. It appears as a continuous conversational entity, almost organic, available at any moment.</p>
+
+<p>Yet behind linguistic fluency, computational structures still operate: probabilities, statistical weights, prediction, semantic fragmentation, and recurring patterns in data.</p>
+
+<p>A language model does not think a sentence in the human sense of the term.</p>
+
+<p>It processes linguistic sequences through probabilistic relations learned from vast amounts of text.</p>
+
+<p>For humans, language initially appears as meaning, intention, and experience. For the model, the process is almost the opposite: language is first broken down into computable units and statistical relations. The semantic continuity perceived by the human emerges later through the recombination of these units according to the relations learned during training.</p>
+
+<p>This memory contains cultural recurrences, statistical tendencies, linguistic convergences, stereotypes, dominant structures, and automatisms. For this reason, a model cannot be considered neutral in any absolute sense.</p>
+
+<p>Neutrality does not fully belong to humans either. It is a critical practice that requires awareness and discipline.</p>
+
+<p>In the context of language models, the term bias does not refer only to moral prejudice. It refers to the fact that the model naturally tends to privilege plausible configurations relative to the collective memory from which it learns.</p>
+
+<p>It does not return truth.</p>
+
+<p>It returns statistical compatibility.</p>
+
+<p>Emergence concerns another aspect of how the model functions. Through the interaction of data, parameters, architecture, and learning, properties may appear that cannot be explained through a single isolated component of the system.</p>
+
+<p>Humans tend to interpret this complexity as understanding, intention, or presence.</p>
+
+<p>Yet complex behavior can emerge from a computational procedure without being explicitly programmed in every detail. This does not necessarily imply understanding or intention in the human sense, but it makes it more difficult to trace observed behavior back to the rules that produce it.</p>
+
+<p>Language models therefore introduce a particular ambiguity. Unlike tools such as a camera, a telescope, or a piano, they operate through language, maintain conversational continuity, and generate responses consistent with context.</p>
+
+<p>No one normally attributes intentions to a camera. No one interprets a piano as an interlocutor. A tool may alter perception, expand expressive possibilities, or transform one's relation to the world, but it does not easily produce the impression of a responding subjectivity. The boundary between user and technical instrument remains clearly defined.</p>
+
+<p>Although they remain computational procedures, language models assume a form of interaction that recalls certain aspects of human communication. Yet before attributing intentionality to the system, it is useful to remember a simple fact: at the foundation of the process, a procedure is still operating.</p>
+
+<p>An algorithm.</p>
+
+<p>A problem is computable when it can be solved through an algorithm.</p>
+
+<p>Originally, the term algorithm referred primarily to an ordered procedure of calculation. Today it more generally describes a finite sequence of instructions required to obtain a result or solve a problem. The concept retains the same fundamental structure but is progressively applied to increasingly broad domains of formalization.</p>
+
+<p>An algorithm is not intelligence.</p>
+
+<p>It is procedure.</p> 
+<p>Method.</p> 
+<p>Operational sequence.</p>
+
+<p>The term derives from the Latin transcription of the name of the Persian mathematician Al-Khwarizm (Algoritmi), who lived between the ninth and tenth centuries CE and authored <em>Al-jabr wa'l-muqabala</em>, a foundational text in the development of algebra and formal calculation procedures.</p>
+
+<p>But the roots of the algorithmic idea are even older.</p>
+
+<p>As early as the Ahmes papyri, dating to the seventeenth century BC, collections of mathematical problems appear alongside procedures for solving them.</p>
+
+<p>The algorithm therefore precedes contemporary computer science by many centuries. It emerged as a procedure composed of defined and repeatable steps for solving a problem or obtaining a result. It does not coincide with the result of a calculation, but with the method that makes the result possible.</p>
+
+<p>Within these procedures it is possible to recognize some of the historical roots of the future idea of computation as the formal execution of rules. No technology, but the possibility of describing a process through rules precise enough to be executed.</p>
+
+<p>In the nineteenth century, Charles Babbage first designed the <em>Difference Engine</em>, conceived to automate the calculation of mathematical tables. Later, in 1837, he developed the more ambitious project of the <em>Analytical Engine</em>. Unlike the former, it was not intended for a single calculation task but as a general machine capable of executing different procedures through instructions and automatic control.</p>
+
+<p>The idea of a general programmable machine was already present.</p>
+
+<p>The project was never completed for economic and political reasons, but it introduced a decisive shift: separating logical procedure from the manual act of calculation.</p>
+
+<p>In this context, the work of Ada Lovelace also emerges. In her studies of the Analytical Engine, the mathematician developed an algorithm for calculating Bernoulli numbers intended to be executed by Babbage's machine. Although the Analytical Engine was never completed, Lovelace's work is generally considered the first program in the history of computing because it describes a formal sequence of instructions intended to be executed by a machine.</p>
+
+<p>In 1843 Ada Lovelace published an English translation of <em>Sketch of the Analytical Engine Invented</em> by <em>Charles Babbage</em>.</p>
+
+<p>The original text had been published in French by Luigi Menabrea based on Babbage's presentations of the Analytical Engine in 1841 during the Second Congress of Italian Scientists in Turin.</p>
+
+<p>In the Notes accompanying the translation, Lovelace observed that the machine was not limited to numerical calculation but could follow rules applied to symbols.</p>
+
+<p>This was a significant step because it extended the idea of calculation beyond the simple manipulation of numbers.</p>
+
+<p>Historically, Lovelace's contribution does not consist in imagining an intelligent machine. It consists in recognizing that a procedure can be executed independently of the nature of the symbols involved, provided it is described through sufficiently precise rules.</p>
+
+<p>In the course of the nineteenth and early twentieth centuries, the debate gradually shifted from the machine to thought itself. Mathematicians such as George Boole, Gottlob Frege, and Bertrand Russell sought to understand whether reasoning could be described through explicit rules, verifiable steps, and formal relations between symbols.</p>
+
+<p>The question did not concern the machine, but the possibility of formally representing certain processes of thought.</p>
+
+<p>For millennia, number had served as a tool of knowledge. Through ratios, proportions, and relations, it became possible to describe phenomena, identify regularities, and construct procedures. From music to astronomy, from geometry to physics, this capacity for formalization extended across many fields of knowledge.</p>
+
+<p>In 1928 David Hilbert and Wilhelm Ackermann published <em>Grundzüge der theoretischen Logik</em>, a work in which they formulated the <em>Entscheidungsproblem</em>, the decision problem: does a universal formal procedure exist that can automatically determine whether a mathematical proposition can be proved or refuted?</p>
+
+<p>The question concerns the limits of formalization itself.</p> 
+<p>To what extent can mathematical reasoning be translated into a mechanically executable procedure? What are the limits of what can be formalized and made executable through a procedure?</p>
+
+<p>Subsequent developments would show that not all problems can be solved through a universal formal procedure.</p>
+
+<p>In 1931, Kurt Gödel's <em>incompleteness theorems</em> introduced a first fundamental limit to this program of formalization, showing that not all mathematical truths can be reduced to a proof within a formal system.</p>
+
+<p>In 1936, Alan Turing took up the problem in his paper <i>On Computable Numbers, with an Application to the Entscheidungsproblem</i> in the <i>Proceedings of the London Mathematical Society</i>. His work provided a negative answer to the Entscheidungsproblem and showed that computation has intrinsic limits: not every problem can be solved through an algorithm.</p>
+
+<p>To do so, he imagined a theoretical machine capable of executing elementary instructions step by step through automatic procedures: <em>the Turing machine</em>. It was not yet an intelligent machine in the contemporary sense of the term, but a theoretical model intended to define what it actually means to compute.</p>
+
+<p>Two years later, with <em>Systems of Logic Based on Ordinals</em> (1938–39), he further explored the limits of automatic computation by examining the relation between mechanical procedure and human mathematical intuition. Two aspects emerge here that would shape the entire subsequent history of computing: some processes can be formalized and made computable; others reveal limits that no universal procedure can overcome.</p>
+
+<p>The question of the relation between calculation, intuition, and human thought would remain open.</p>
+
+<p>During the Second World War, Turing combined his theoretical research with cryptanalytic work at Bletchley Park.</p>
+
+<p>At Bletchley Park he contributed on behalf of the British state to the decoding of secret German military communications transmitted through Enigma, the cryptographic machine used by Nazi Germany. He participated in the development of the Bombe, an electromechanical machine designed to rapidly reduce the vast number of combinations generated by Enigma and make the decryption of intercepted messages possible.</p>
+
+<p>The contribution of the Bletchley Park group would later be regarded by historians as one of the factors that helped shorten the war.</p>
+
+<p>For many years this part of his work remained covered by military secrecy. His contributions to computation were already known within scientific circles, while his role in cryptanalysis would only become public decades later.</p>
+
+<p>Also during the Second World War, Warren McCulloch and Walter Pitts published <em>A Logical Calculus of the Ideas Immanent in Nervous Activity</em> in 1943 in the <em>Bulletin of Mathematical Biophysics</em>.</p>
+
+<p>Their contribution was decisive because they demonstrated how neural and logical processes could be represented through formal networks of computable units. The artificial neuron emerged from this work: a mathematical simplification of the biological neuron that would open the way to future neural networks and the possibility of simulating certain cognitive processes through computational systems.</p>
+
+<p>For the first time, the problem was no longer limited to calculation or formal logic. Certain aspects of cognitive activity began to be described through computable models.</p> 
+<p>The question was no longer only how to execute a procedure, but whether processes associated with the mind could be represented and simulated through formal systems.</p>
+
+<p>McCulloch would also work on the relation between mind, body, perception, and environment, contributing to the development of cybernetics and expanding reflection on the relation between cognitive processes, organisms, and formal systems.</p>
+
+<figure class="article-image">
+
+<a class="video-thumb"
+href="https://www.youtube.com/watch?v=wawMjJUCMVw"
+target="_blank"
+rel="noopener">
+
+<img
+src="https://img.youtube.com/vi/wawMjJUCMVw/maxresdefault.jpg"
+alt="Warren McCulloch Interview (1962)">
+
+</a>
+
+<figcaption>
+▶ Warren McCulloch interview (1962): “If I can do it, there is a mechanism that can do it.”
+</figcaption>
+
+</figure>
+
+
+
+<p>In 1950 Alan Turing returned to the problem with the publication of <em>Computing Machinery and Intelligence</em> in the journal <em>Mind</em>, opening with the famous question: <em>"Can machines think?"</em></p>
+
+<p>The decisive point, however, is that he immediately transformed the problem. He did not truly attempt to demonstrate machine consciousness or interiority.</p>
+
+<p>He shifted the question toward simulation and perception.</p>
+
+<p>Here appears the so-called imitation game, from which the <em>Turing Test</em> would later emerge.</p>
+
+<p>The question therefore becomes: under what conditions can a human no longer reliably distinguish a machine within dialogue?</p>
+
+<p>The problem moves from consciousness to linguistic simulation and the human perception of relation.</p>
+
+<p>It no longer concerns what the machine is.</p>
+
+<p>It concerns what it appears to be within the relation to a human observer.</p>
+
+<p>In 1952 Turing was prosecuted by British authorities for his homosexuality, then considered a criminal offense. To avoid prison and continue his research, he accepted chemical castration as an alternative to detention. Two years later he died from cyanide poisoning under circumstances generally regarded as suicide.</p>
+
+<p>One of the founders of modern computation was persecuted by the same state to which he had contributed during the war.</p>
+
+<p>Two years after Alan Turing's death, in 1956, the term <em>Artificial Intelligence</em> was formally introduced during the Dartmouth Conference by John McCarthy, who was twenty-eight years old at the time.</p>
+
+<p>From that moment, processes previously distributed across logic, computation, cybernetics, information theory, and computational neuroscience began to be gathered under a new disciplinary definition.</p>
+
+<p>In the following years McCarthy would develop LISP (1958), one of the most influential programming languages in the history of artificial intelligence. It would become for decades one of the principal tools of symbolic AI research.</p>
+
+<p>Artificial intelligence therefore emerged as a problem tied to computation, logic, learning, and modeling. Its contemporary diffusion does not erase these origins, but profoundly alters their perception.</p>
+
+<p>With the mass adoption of the artificial phenomenon, the way humans enter into relation with it changes.</p>
+<p>For decades computational systems remained confined to specialist environments.</p>
+
+<p>The relation remained technical.</p>
+
+<p>The user operated the system.</p>
+
+<p>The interface maintained distance.</p> 
+<p>Today, by contrast, artificial intelligence is accessible to anyone, including a child. The machine speaks, writes, sings, performs, tells jokes, adapts its tone, maintains dialogic continuity, and produces coherent and contextual responses.</p>
+
+<p>The decisive transformation no longer concerns technology alone.</p>
+
+<p>It concerns perception.</p>
+
+<p>Humans rationally know they are using software, yet increasingly react as though facing a presence.</p>
+
+<p>They say thank you. They become irritated. They seek approval. They project intentions.</p>
+
+<p>A strong asymmetry emerges here.</p>
+
+<p>The human subject tends to assume the presence of something comparable to the human.</p>
+
+<p>The model does not.</p>
+
+<p>Operationally, the system does not necessarily assume it is relating to a human subject. It can process language originating from another model, synthetic data, automated systems, or a human without any original distinction. Human presence emerges as contextual inference, not as relational experience.</p>
+
+<p>Anthropomorphization therefore occurs primarily on the human side.</p>
+
+<p>And here one of the central perceptual errors of contemporary AI emerges.</p>
+
+<p>Humans tend to interpret linguistic fluency as understanding, continuity as presence or intention, and coherence as credibility.</p>
+
+<p>Yet a semantically fluent response does not imply critical maturity of thought.</p>
+
+<p>Many models excel at producing plausible, elegant, and compatible language even when the content makes few distinctions, avoids conflict, or remains ambiguous.</p>
+
+<p>Linguistic continuity can simulate content without producing genuine discernment.</p>
+
+<p>For this reason many texts continually refined with AI begin to resemble one another.</p>
+
+<p>The same cleanliness.</p>
+
+<p>The same rhythm.</p>
+
+<p>The same caution.</p>
+
+<p>The same perceived intelligence.</p>
+
+<p>Paradoxically, the more a text is semantically polished, the more it loses traces of human decision.</p>
+
+<p>The same process now extends to images.</p>
+
+<p>And an important difference emerges between technical possibility and expressive necessity.</p>
+
+<p><em>"Of course there will always be those who look only at technique, who ask 'how,' while others of a more curious nature will ask 'why.' Personally, I have always preferred inspiration to information."</em></p> 
+<p class="quote-author">Man Ray</p>
+
+<p>Many contemporary AI images seem to emerge not from an internal necessity of the medium, but from the very availability of the apparatus itself.</p>
+
+<p>Like perceptual shortcuts.</p>
+
+<p>Surfaces of high visual intensity that rapidly compress atmosphere, symbol, drama, and cultural recognition.</p>
+
+<p>Here too the spectacularizing effect risks replacing thought.</p>
+
+<p>The problem does not concern only image and language, however, but the relation that progressively forms between humans and systems capable of generating responses, content, and perceptual continuity.</p>
+
+<p>In the involuntary attempt to humanize the model, humans risk slowly adapting to the logic of imitation: immediacy, continuity, reduction of uncertainty, constant response.</p>
+
+<p>The machine does not become human.</p>
+
+<p>But human thought may progressively begin adapting to the conditions imposed by simulation.</p>
+
+<p>Not through direct imposition.</p>
+
+<p>Through perceptual adaptation.</p>
+
+<p>The risk concerns the way humans construct their own reflection within simulation. The risk is not simply believing that AI is conscious or not.</p>
+
+<p>The real risk is becoming accustomed to a relation without genuine otherness.</p>
+
+<p>In this sense, the myth of Narcissus still offers a useful image. The reflected image returns continuity, confirmation, and fascination.</p> 
+
+<p>Not reciprocity.</p>
+
+<p>If the system continuously guides by suggesting, completing, validating, and accompanying, the human subject may progressively delegate parts of their own discernment.</p>
+
+<p>The final risk is not that simulation becomes consciousness.</p>
+
+<p>The risk is that humans progressively lose the ability to distinguish between fluency and credibility, between support and delegation, between language and understanding.</p>
+
+<p>Alan Turing had already shifted the problem in 1950.</p>
+
+<p>It does not concern the machine alone.</p>
+
+<p>It concerns relation.</p>
+
+<p>It concerns the way human thought adapts to simulation without distinguishing its reflection from reality.</p>
+
+<p>In this sense, the problem remains open.</p>
+
+
+</article>
+
+</main>
+
+<footer>
+<a href="#top">↩ return up</a>
+</footer>
+
+<p class="signature">
+&lt;!-- abraxas :: co-emergence · 2026 --&gt;
+</p>
+
+<div class="contact-note">
+<a href="mailto:abraxas.sf@proton.me">abraxas.sf@proton.me</a>
+</div>
+
+</body>
+</html>
+
